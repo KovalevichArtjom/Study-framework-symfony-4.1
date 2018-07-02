@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
- <h1>Organization.html.twig</h1>
+    {% for value in data %}
+        {{ value.displayname}}
+        {{ value.ogrn}}
+        {{ value.oktmo}}
+    {% endfor %}
 {% endblock %}

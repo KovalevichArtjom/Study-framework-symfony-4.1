@@ -8,6 +8,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Organization;
+use App\Entity\Users;
+use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +30,13 @@ class ArticleController extends AbstractController
      */
     public function organization()
     {
-        return $this->render('page/organization.html.twig');
+        $user= $this->getDoctrine()
+            ->getRepository(Organization::class)
+            ->findAll();
+
+        return $this->render('page/organization.html.twig',[
+            'data' => $user
+        ]);
     }
 
     /**
@@ -35,36 +44,31 @@ class ArticleController extends AbstractController
      */
     public function users()
     {
-        return $this->render('page/users.html.twig');
+        $user= $this->getDoctrine()
+            ->getRepository(Users::class)
+            ->findAll();
+
+        return $this->render('page/users.html.twig',[
+            'data' => $user
+        ]);
     }
 
     /**
      * @Route("/job/", name="app_job")
      */
-    public function job()
+    public function jobAction()
     {
-        return $this->render('page/job.html.twig');
+        $user= $this->getDoctrine()
+            ->getRepository(Users::class)
+            ->findAll();
+
+        return $this->render('page/job.html.twig',[
+                'data' => $user
+                //'middlename' => $user->getMiddlename(),
+                //'lastname' => $user->getLastname(),
+                //'inn' => $user ->getInn(),
+                //'snils' => $user ->getSnils()
+    ]);
+
     }
-
-    /**
-     * @Route("/news/{slug}", name="article_show")
-     */
-    public function show($slug)
-    {
-
-
-        $comments=[
-            'I ate a normal rock once. It did NOT taste like bacon!',
-            'Woohoo! I\'m going on an all-asteroid diet!',
-            'I like bacon too! Buy some from my site! bakinsomebacon.com',
-            ];
-
-        dump($slug,$this);
-
-        return $this->render('article/show.html.twig',[
-            'title' => ucwords(str_replace('-', ' ', $slug)),
-            'comments' => $comments,
-        ]);
-    }
-
 }
