@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    {% for value in data %}
+    {% for value in db_users %}
         {{ value.firstname}}
         {{ value.middlename}}
-        {{ value.lastname}}
-        {{ value.inn}}
-        {{ value.snils}}<br />
+        {{ value.lastname}}<br />
     {% endfor %}
+        {% for value in db_org %}
+            {{ value.displayname}}<br />
+        {% endfor %}
 {% endblock %}

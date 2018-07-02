@@ -9,6 +9,8 @@
 namespace App\Controller;
 
 
+use App\Entity\Organization;
+use App\Entity\PlaceJob;
 use App\Entity\Users;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bridge\Doctrine\Tests\Fixtures\User;
@@ -38,6 +40,27 @@ class ToolsDB extends AbstractController
         return new Response('Saved new product with id '.$user->getId());
     //    return $this->render('page/job.html.twig');
     }
+
+    /**
+     * @Route("/placejob/add", name="placaejob_add")
+     */
+    public function addplacaejobAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $placaejob = new PlaceJob();
+        $placaejob ->setOkmo('34586905567');
+        $placaejob ->setSnils('9762345358233');
+
+        $em  ->persist($placaejob);
+
+        $em ->flush();
+
+        return new Response('Saved new product with id '.$placaejob->getId());
+        //    return $this->render('page/job.html.twig');
+    }
+
+
 
     /**
      * @Route("/job/{id}", name="show_User")
@@ -76,6 +99,26 @@ class ToolsDB extends AbstractController
 
         return new Response('delet '.$id);
         //    return $this->render('page/job.html.twig');
+    }
+
+    /**
+     * @Route("/placejob/delet/{id}", name="delet_Placejob")
+     */
+    public function deleteplacejobAction($id)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $placejob = $em->getRepository(PlaceJob::class)->find($id);
+
+        if (!$placejob) {
+            throw $this->createNotFoundException(
+                'No delete for id '.$id
+            );
+        }
+
+        $em->remove($placejob);
+        $em->flush();
+
+        return new Response('delet '.$id);
     }
 
     /**

@@ -28,6 +28,7 @@ class Organization
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true,  unique=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Users", mappedBy="snils")
      */
     private $oktmo;
 

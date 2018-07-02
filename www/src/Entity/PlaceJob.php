@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,9 +18,14 @@ class PlaceJob
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true,  unique=true)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $okmo;
+
+    public function __construct()
+    {
+        $this->okmo = new ArrayCollection();
+    }
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true,  unique=true)

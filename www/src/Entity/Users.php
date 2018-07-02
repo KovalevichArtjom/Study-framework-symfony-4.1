@@ -38,6 +38,7 @@ class Users
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true,  unique=true)
+     * @ORM\OneToOne(targetEntity="App\Entity\Organization", mappedBy="oktmo")
      */
     private $snils;
 

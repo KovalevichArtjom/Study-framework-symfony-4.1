@@ -62,8 +62,13 @@ class ArticleController extends AbstractController
             ->getRepository(Users::class)
             ->findAll();
 
+        $org= $this->getDoctrine()
+            ->getRepository(Organization::class)
+            ->findAll();
+
         return $this->render('page/job.html.twig',[
-                'data' => $user
+                'db_users' => $user,
+                'db_org' => $org
                 //'middlename' => $user->getMiddlename(),
                 //'lastname' => $user->getLastname(),
                 //'inn' => $user ->getInn(),
