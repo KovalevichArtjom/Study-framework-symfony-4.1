@@ -10,10 +10,8 @@ namespace App\Controller;
 
 use App\Entity\Organization;
 use App\Entity\Users;
-use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 
 class ArticleController extends AbstractController
 {
@@ -69,10 +67,6 @@ class ArticleController extends AbstractController
         return $this->render('page/job.html.twig',[
                 'db_users' => $user,
                 'db_org' => $org
-                //'middlename' => $user->getMiddlename(),
-                //'lastname' => $user->getLastname(),
-                //'inn' => $user ->getInn(),
-                //'snils' => $user ->getSnils()
     ]);
 
     }

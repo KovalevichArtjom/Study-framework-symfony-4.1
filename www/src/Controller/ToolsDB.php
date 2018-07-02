@@ -61,25 +61,6 @@ class ToolsDB extends AbstractController
     }
 
 
-
-    /**
-     * @Route("/job/{id}", name="show_User")
-     */
-    public function showuserAction($id)
-    {
-       $user= $this->getDoctrine()
-           ->getRepository(Users::class)
-           ->find($id);
-       if(!$user){
-           throw $this->createNotFoundException(
-               'Not found users.'.$id
-           );
-       }
-
-        return new Response('Saved new product with id '.$user->getFirstname());
-        //    return $this->render('page/job.html.twig');
-    }
-
     /**
      * @Route("/job/delet/{id}", name="delet_User")
      */

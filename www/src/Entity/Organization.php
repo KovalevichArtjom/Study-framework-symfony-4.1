@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +32,12 @@ class Organization
      * @ORM\OneToMany(targetEntity="App\Entity\Users", mappedBy="snils")
      */
     private $oktmo;
+
+    public function __construct()
+    {
+        $this->oktmo = new ArrayCollection();
+    }
+
 
     public function getId()
     {
